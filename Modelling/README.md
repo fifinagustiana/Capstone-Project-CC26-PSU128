@@ -11,7 +11,7 @@ API ini dilindungi oleh dua lapis keamanan:
 2. **API Key (Wajib)**: Setiap *request* yang dikirim **wajib** menyertakan HTTP Header `X-API-Key`.
 
 - **Header Key**: `X-API-Key`
-- **Header Value**: `sumpelebom` *(Harap simpan kunci ini dengan aman di `.env`)*
+- **Header Value**: `...` *# TIM FEBE(FS) WAJIB KONFIRMASI KUNCI RAHASIA API KE TIM AI*
 
 ---
 
@@ -19,7 +19,7 @@ API ini dilindungi oleh dua lapis keamanan:
 
 Menerima data metrik balita dan mengembalikan hasil diagnosa status gizi beserta probabilitasnya.
 
-- **URL Endpoint:** `https://<url-huggingface-anda>/predict`
+- **URL Endpoint:** `...` *# TIM FEBE(FS) WAJIB KONFIRMASI ALAMAT WEB MEREKA UNTUK DIWHITELIST OLEH TIM AI*
 - **Method:** `POST`
 - **Content-Type:** `application/json`
 
@@ -83,7 +83,7 @@ Jika *request* berhasil, API akan mengembalikan hasil pemrosesan JSON berikut:
 
 ### A. Untuk Tim Frontend (JavaScript / Fetch API)
 ```javascript
-const url = "https://<url-huggingface-anda>/predict";
+const url = "# KONFIRMASI KE TIM AI";
 const dataBalita = {
     "umur_bulan": 15,
     "tinggi_badan_cm": 78.2,
@@ -94,7 +94,7 @@ fetch(url, {
     method: "POST",
     headers: {
         "Content-Type": "application/json",
-        "X-API-Key": "sumpelebom"
+        "X-API-Key": "# KONFORMASI KE TIM AI"
     },
     body: JSON.stringify(dataBalita)
 })
@@ -113,10 +113,10 @@ fetch(url, {
 ```python
 import requests
 
-url = "https://<url-huggingface-anda>/predict"
+url = "# KONFIRMASI KE TIM AI"
 headers = {
     "Content-Type": "application/json",
-    "X-API-Key": "sumpelebom"
+    "X-API-Key": "# KONFIRMASI KE TIM AI"
 }
 payload = {
     "umur_bulan": 24,
