@@ -1,13 +1,13 @@
 # 📚 Dokumentasi API Prediksi Risiko Stunting
 
-Dokumen ini ditujukan bagi tim Frontend dan Backend untuk mengintegrasikan layanan **Prediksi Risiko Stunting Balita**. API ini di-hosting secara mandiri (via Hugging Face Spaces/Cloud) dan ditenagai oleh model *Deep Learning* (TensorFlow).
+Dokumen ini ditujukan bagi tim Frontend dan Backend untuk mengintegrasikan layanan **Prediksi Risiko Stunting Balita**. API ini di-hosting secara mandiri via Hugging Face Spaces dan ditenagai oleh model *Deep Learning* (TensorFlow).
 
 ---
 
 ## 🔒 1. Autentikasi & Keamanan
 
 API ini dilindungi oleh dua lapis keamanan:
-1. **CORS Whitelist**: Pastikan URL aplikasi Anda sudah didaftarkan oleh tim AI ke dalam sistem backend kami. Jika belum, *browser* Anda akan memblokir *request*.
+1. **CORS Whitelist**: Pastikan URL aplikasi Anda sudah didaftarkan oleh tim AI ke dalam sistem backend kami. Jika belum, *browser* Anda akan memblokir *request*. **# TIM FEBE(FS) WAJIB KONFIRMASI ALAMAT WEB MEREKA UNTUK DIWHITELIST OLEH TIM AI**
 2. **API Key (Wajib)**: Setiap *request* yang dikirim **wajib** menyertakan HTTP Header `X-API-Key`.
 
 - **Header Key**: `X-API-Key`
@@ -19,7 +19,7 @@ API ini dilindungi oleh dua lapis keamanan:
 
 Menerima data metrik balita dan mengembalikan hasil diagnosa status gizi beserta probabilitasnya.
 
-- **URL Endpoint:** `...` *# TIM FEBE(FS) WAJIB KONFIRMASI ALAMAT WEB MEREKA UNTUK DIWHITELIST OLEH TIM AI*
+- **URL Endpoint:** `...` *# TIM FEBE(FS) WAJIB KONFIRMASI ALAMAT ENDPOINT KE TIM AI*
 - **Method:** `POST`
 - **Content-Type:** `application/json`
 
@@ -83,7 +83,7 @@ Jika *request* berhasil, API akan mengembalikan hasil pemrosesan JSON berikut:
 
 ### A. Untuk Tim Frontend (JavaScript / Fetch API)
 ```javascript
-const url = "# KONFIRMASI KE TIM AI";
+const url = "# KONFIRMASI ALAMAT ENDPOINT KE TIM AI";
 const dataBalita = {
     "umur_bulan": 15,
     "tinggi_badan_cm": 78.2,
@@ -113,7 +113,7 @@ fetch(url, {
 ```python
 import requests
 
-url = "# KONFIRMASI KE TIM AI"
+url = "# KONFIRMASI ALAMAT ENDPOINT KE TIM AI"
 headers = {
     "Content-Type": "application/json",
     "X-API-Key": "# KONFIRMASI KE TIM AI"
