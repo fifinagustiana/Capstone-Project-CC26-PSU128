@@ -125,4 +125,4 @@ Dashboard menampilkan:
 Dashboard ini dikembangkan oleh TIM CC26-PSU128.
 
 ## Link Streamlit
-`https://stuntingscan.streamlit.app/`
+https://stuntingscan.streamlit.app/
