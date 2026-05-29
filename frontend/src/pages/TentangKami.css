@@ -1,0 +1,31 @@
+.tentang-page { display: flex; flex-direction: column; gap: 20px; }
+
+.tentang-hero { background: var(--lime); border-radius: var(--radius-2xl); padding: 48px 44px; position: relative; overflow: hidden; }
+.tentang-hero::after { content:''; position:absolute; right:-40px; bottom:-40px; width:220px; height:220px; background:rgba(255,255,255,0.2); border-radius:50%; }
+.th-badge { font-size: 0.75rem; font-weight: 600; color: rgba(0,0,0,0.5); letter-spacing: 0.06em; margin-bottom: 12px; }
+.th-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: var(--black); line-height: 1.15; margin-bottom: 16px; }
+.th-desc { font-size: 0.875rem; color: rgba(0,0,0,0.65); line-height: 1.7; max-width: 520px; }
+
+.value-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+.value-card { border-radius: var(--radius-2xl); padding: 28px 24px; }
+.vc-icon { font-size: 1.4rem; margin-bottom: 12px; }
+.value-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+.value-card p { font-size: 0.82rem; color: rgba(0,0,0,0.65); line-height: 1.6; }
+
+.team-section { background: var(--white); border: 1.5px solid var(--gray-200); border-radius: var(--radius-2xl); padding: 28px; }
+.team-section h2 { font-size: 1.2rem; font-weight: 800; margin-bottom: 4px; }
+.team-sub { font-size: 0.82rem; color: var(--gray-400); margin-bottom: 20px; }
+.team-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; }
+.team-card { display: flex; align-items: center; gap: 12px; background: var(--gray-100); border-radius: var(--radius-xl); padding: 14px 16px; animation: slideIn 0.35s ease both; }
+.tc-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--lavender); color: var(--purple); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.9rem; flex-shrink: 0; }
+.tc-nama { font-size: 0.875rem; font-weight: 700; margin-bottom: 2px; }
+.tc-peran { font-size: 0.75rem; color: var(--gray-400); }
+
+.stack-section { background: var(--black); border-radius: var(--radius-2xl); padding: 32px 36px; }
+.stack-label { font-size: 0.9rem; font-family: var(--font-mono); color: var(--lime); margin-bottom: 8px; }
+.stack-section h2 { font-size: 1.4rem; font-weight: 800; color: var(--white); margin-bottom: 20px; }
+.stack-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.stack-tag { background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.15); padding: 7px 16px; border-radius: var(--radius-full); font-size: 0.82rem; font-weight: 500; }
+
+@media (max-width: 768px) { .value-cards { grid-template-columns: 1fr; } .team-grid { grid-template-columns: 1fr; } }
+@media (max-width: 600px) { .tentang-hero { padding: 28px 24px; } }
