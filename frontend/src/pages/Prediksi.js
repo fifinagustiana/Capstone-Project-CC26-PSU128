@@ -77,7 +77,7 @@ export default function Prediksi() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    apiFetch('/api/balita')
+    apiFetch("/api/balita")
       .then((r) => r.json())
       .then((d) => {
         const list = Array.isArray(d?.data) ? d.data : [];
