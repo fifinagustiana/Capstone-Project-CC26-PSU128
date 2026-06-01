@@ -16,12 +16,8 @@ Backend bertugas untuk:
 
 Alur sistem:
 
-Frontend React
-↓
-Backend Express.js
-↓
-API AI Stunting
-↓
-PostgreSQL
-↓
+Frontend React -
+Backend Express.js -
+API AI Stunting -
+PostgreSQL -
 Frontend React

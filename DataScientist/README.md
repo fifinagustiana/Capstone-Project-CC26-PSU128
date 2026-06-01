@@ -1,5 +1,7 @@
 # 📊 StuntingScan - Data Analytics & Streamlit Dashboard Core
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/fifinagustiana/Capstone-Project-CC26-PSU128/blob/main/DataScientist/Data_Prep_Prediksi_Risiko_Stunting_Balita.ipynb) 
+
 Repositori ini berisi dokumentasi, alur kerja, dan panduan replikasi untuk proses:
 - Exploratory Data Analysis (EDA)
 - Medical audit berdasarkan Z-score WHO
