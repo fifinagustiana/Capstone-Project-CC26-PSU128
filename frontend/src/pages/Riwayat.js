@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Riwayat.css';
+import { apiFetch } from "../config/api";
 
 const STATUS_STYLE = {
-  'Normal':           { bg: '#DCFCE7', color: '#166534' },
-  'Tinggi':           { bg: '#DBEAFE', color: '#1E40AF' },
-  'Stunting':         { bg: '#FEF9C3', color: '#854D0E' },
+  'Normal': { bg: '#DCFCE7', color: '#166534' },
+  'Tinggi': { bg: '#DBEAFE', color: '#1E40AF' },
+  'Stunting': { bg: '#FEF9C3', color: '#854D0E' },
   'Severely Stunted': { bg: '#FEE2E2', color: '#991B1B' },
 };
 
@@ -18,7 +19,7 @@ export default function Riwayat() {
   const [expanded, setExpanded] = useState({}); // { namaBalita: bool }
 
   useEffect(() => {
-    fetch('/api/history?per_page=200')
+    apiFetch('/api/history?per_page=200')
       .then(r => r.json())
       .then(d => { setData(Array.isArray(d?.data) ? d.data : []); setLoading(false); })
       .catch(() => {

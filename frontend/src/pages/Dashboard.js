@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts';
 import './Dashboard.css';
+import { apiFetch } from "../config/api";
 
 const MOCK_STATS = { totalPrediksi: 0, bulanIni: 0, normal: 0, stunting: 0, severely: 0, tinggi: 0 };
 const MOCK_TREND = [
@@ -21,8 +22,8 @@ export default function Dashboard() {
   const [recentData, setRecentData] = useState([]);
 
   useEffect(() => {
-    fetch('/api/stats').then(r => r.json()).then(d => d && setStats(d)).catch(() => {});
-    fetch('/api/history?per_page=5').then(r => r.json())
+    apiFetch('/api/stats').then(r => r.json()).then(d => d && setStats(d)).catch(() => { });
+    apiFetch('/api/history?per_page=5').then(r => r.json())
       .then(d => setRecentData(Array.isArray(d?.data) ? d.data : []))
       .catch(() => {
         const local = JSON.parse(localStorage.getItem('stuntingscan_history') || '[]');
@@ -31,17 +32,17 @@ export default function Dashboard() {
   }, []);
 
   const pieData = [
-    { name: 'Normal',   value: stats.normal   || 0 },
+    { name: 'Normal', value: stats.normal || 0 },
     { name: 'Stunting', value: (stats.stunting || 0) + (stats.severely || 0) },
-    { name: 'Lainnya',  value: stats.tinggi   || 0 },
+    { name: 'Lainnya', value: stats.tinggi || 0 },
   ];
   const PIE_COLORS = ['#7C3AED', '#F472B6', '#CBFF4D'];
 
   const STATUS_STYLE = {
-    'Normal':           { bg: 'var(--normal-bg)',   color: 'var(--normal-text)' },
-    'Tinggi':           { bg: 'var(--tinggi-bg)',   color: 'var(--tinggi-text)' },
-    'Stunting':         { bg: 'var(--stunting-bg)', color: 'var(--stunting-text)' },
-    'Severely Stunted': { bg: 'var(--severe-bg)',   color: 'var(--severe-text)' },
+    'Normal': { bg: 'var(--normal-bg)', color: 'var(--normal-text)' },
+    'Tinggi': { bg: 'var(--tinggi-bg)', color: 'var(--tinggi-text)' },
+    'Stunting': { bg: 'var(--stunting-bg)', color: 'var(--stunting-text)' },
+    'Severely Stunted': { bg: 'var(--severe-bg)', color: 'var(--severe-text)' },
   };
 
   return (
@@ -100,8 +101,8 @@ export default function Dashboard() {
               <XAxis dataKey="bulan" tick={{ fontSize: 12, fill: 'var(--gray-400)' }} axisLine={false} tickLine={false} />
               <YAxis tick={{ fontSize: 12, fill: 'var(--gray-400)' }} axisLine={false} tickLine={false} />
               <Tooltip contentStyle={{ background: 'var(--black)', border: 'none', borderRadius: 10, color: 'white', fontSize: 12 }} />
-              <Bar dataKey="normal"   fill="#CBFF4D" radius={[4,4,0,0]} name="Normal" />
-              <Bar dataKey="stunting" fill="#C4B5FD" radius={[4,4,0,0]} name="Stunting" />
+              <Bar dataKey="normal" fill="#CBFF4D" radius={[4, 4, 0, 0]} name="Normal" />
+              <Bar dataKey="stunting" fill="#C4B5FD" radius={[4, 4, 0, 0]} name="Stunting" />
             </BarChart>
           </ResponsiveContainer>
         </div>

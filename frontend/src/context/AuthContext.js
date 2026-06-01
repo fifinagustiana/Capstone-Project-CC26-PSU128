@@ -1,3 +1,4 @@
+import { apiFetch } from "../config/api";
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const AuthContext = createContext(null);
@@ -9,7 +10,7 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const saved = localStorage.getItem('ss_user');
     if (saved) {
-      try { setUser(JSON.parse(saved)); } catch {}
+      try { setUser(JSON.parse(saved)); } catch { }
     }
     setLoading(false);
   }, []);
@@ -19,7 +20,7 @@ export function AuthProvider({ children }) {
 
     // Coba API backend dulu
     try {
-      const res = await fetch('/api/auth/login', {
+      const res = await apiFetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: emailNorm, password }),
@@ -62,7 +63,7 @@ export function AuthProvider({ children }) {
 
     // Coba API backend dulu
     try {
-      const res = await fetch('/api/auth/register', {
+      const res = await apiFetch('/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...data, email: emailNorm }),

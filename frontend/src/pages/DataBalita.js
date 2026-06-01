@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './DataBalita.css';
+import { apiFetch } from "../config/api";
 
 const EMPTY_FORM = { nama: '', jenis_kelamin: '', tanggal_lahir: '', nama_ortu: '', no_hp: '', alamat: '', catatan: '' };
 const STATUS_STYLE = {
-  'Normal':           { bg: '#DCFCE7', color: '#166534' },
-  'Tinggi':           { bg: '#DBEAFE', color: '#1E40AF' },
-  'Stunting':         { bg: '#FEF9C3', color: '#854D0E' },
+  'Normal': { bg: '#DCFCE7', color: '#166534' },
+  'Tinggi': { bg: '#DBEAFE', color: '#1E40AF' },
+  'Stunting': { bg: '#FEF9C3', color: '#854D0E' },
   'Severely Stunted': { bg: '#FEE2E2', color: '#991B1B' },
 };
 
@@ -56,7 +57,7 @@ export default function DataBalita() {
   const showToast = (message, type = 'success') => setToast({ message, type });
 
   const loadBalita = () => {
-    fetch('/api/balita').then(r => r.json())
+    apiFetch('/api/balita').then(r => r.json())
       .then(d => setList(Array.isArray(d?.data) ? d.data : Array.isArray(d) ? d : []))
       .catch(() => setList(JSON.parse(localStorage.getItem('ss_balita') || '[]')));
   };
@@ -65,7 +66,7 @@ export default function DataBalita() {
 
   useEffect(() => {
     if (!selected) { setRiwayat([]); return; }
-    fetch(`/api/history?balita_id=${selected.id}`)
+    apiFetch(`/api/history?balita_id=${selected.id}`)
       .then(r => r.json()).then(d => setRiwayat(Array.isArray(d?.data) ? d.data : []))
       .catch(() => {
         const all = JSON.parse(localStorage.getItem('stuntingscan_history') || '[]');
@@ -102,7 +103,7 @@ export default function DataBalita() {
     if (Object.keys(e).length) { setErrors(e); return; }
     setSaving(true);
     try {
-      const res = await fetch('/api/balita', {
+      const res = await apiFetch('/api/balita', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
@@ -125,7 +126,7 @@ export default function DataBalita() {
   const handleDelete = async (id) => {
     if (!window.confirm('Hapus data balita ini?')) return;
     try {
-      await fetch(`/api/balita/${id}`, { method: 'DELETE' });
+      await apiFetch(`/api/balita/${id}`, { method: 'DELETE' });
       loadBalita();
     } catch {
       const existing = JSON.parse(localStorage.getItem('ss_balita') || '[]');

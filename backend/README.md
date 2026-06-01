@@ -7,7 +7,7 @@ Backend untuk aplikasi **StuntingScan**. Backend ini dibangun menggunakan **Node
 Backend bertugas untuk:
 
 1. Menyediakan RESTful API untuk frontend React.
-2. Mengelola register dan login user.
+2. Mengelola register dan login user
 3. Menyimpan data balita ke PostgreSQL.
 4. Mengirim data prediksi ke API AI.
 5. Menyimpan hasil prediksi ke database.
