@@ -1,6 +1,6 @@
 # 📚 Dokumentasi API Prediksi Risiko Stunting
 
-Dokumen ini ditujukan bagi tim Frontend dan Backend untuk mengintegrasikan layanan **Prediksi Risiko Stunting Balita**. API ini di-hosting secara mandiri via Hugging Face Spaces dan ditenagai oleh model *Deep Learning* (TensorFlow).
+Dokumen ini ditujukan bagi tim Frontend dan Backend untuk mengintegrasikan layanan **Prediksi Risiko Stunting Balita**. API ini di-hosting secara mandiri via Hugging Face Spaces dan ditenagai oleh model *Deep Learning* (TensorFlow) untuk prediksi gizi serta *Generative AI* (Google Gemini) untuk menghasilkan rekomendasi kesehatan secara otomatis.
 
 ---
 
@@ -17,7 +17,7 @@ API ini dilindungi oleh dua lapis keamanan:
 
 ## 🚀 2. Endpoint Utama
 
-Menerima data metrik balita dan mengembalikan hasil diagnosa status gizi beserta probabilitasnya.
+Menerima data metrik balita dan mengembalikan hasil diagnosa status gizi beserta probabilitasnya, serta teks rekomendasi penanganan cerdas berbasis Gen AI.
 
 - **URL Endpoint:** `...` *# TIM FEBE(FS) WAJIB KONFIRMASI ALAMAT ENDPOINT KE TIM AI*
 - **Method:** `POST`
@@ -64,10 +64,13 @@ Jika *request* berhasil, API akan mengembalikan hasil pemrosesan JSON berikut:
       "stunted": 0.0105,
       "tinggi": 0.0029
     }
-  }
+  },
+  "rekomendasi_gemini": "### 1. Analisis Kondisi\nTinggi badan anak Anda saat ini tergolong normal untuk usianya.\n\n### 2. Nutrisi & PMT\n- Pastikan asupan protein hewani harian...\n- Lanjutkan pemberian menu seimbang...\n\n### 3. Pola Asuh & Sanitasi\n- Ajak anak bermain aktif...\n- Jaga kebersihan alat makan...\n\n### 4. Konsultasi Medis\nTetap rutin kunjungi Posyandu setiap bulan untuk memantau tumbuh kembangnya."
 }
 ```
-*Catatan: Anda cukup mengambil variabel `hasil_prediksi.kategori_diagnosa` untuk ditampilkan ke User.*
+*Catatan:*
+*- Ambil variabel `hasil_prediksi.kategori_diagnosa` untuk menampilkan status gizi ke User.*
+*- Variabel `rekomendasi_gemini` mengembalikan teks dengan format **Markdown**. Tim Frontend disarankan menggunakan *Markdown Parser* (seperti `react-markdown` atau `marked`) untuk me-render *styling* list dan headingnya.*
 
 ---
 
@@ -102,6 +105,7 @@ fetch(url, {
 .then(result => {
     if(result.status === "success") {
         console.log("Status Gizi:", result.hasil_prediksi.kategori_diagnosa);
+        console.log("Rekomendasi AI:", result.rekomendasi_gemini);
     } else {
         console.error("Gagal memproses data");
     }
@@ -129,6 +133,7 @@ response = requests.post(url, json=payload, headers=headers)
 if response.status_code == 200:
     data = response.json()
     print("Kategori:", data['hasil_prediksi']['kategori_diagnosa'])
+    print("Rekomendasi:\n", data['rekomendasi_gemini'])
 else:
     print("Error:", response.text)
 ```
